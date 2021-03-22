@@ -37,7 +37,7 @@ try {
 	 	sleep(2); // rate-limit CF
 
 	 	$idZone = $resp->result->id;
-	 	$zoneFile = "$jobs/$domain.hosts";
+	 	$zoneFile = "jobs/$domain.hosts";
 
 	 	while(true) {
 		 	$cmd = "curl -s -X POST $authHeaders \"https://api.cloudflare.com/client/v4/zones/$idZone/dns_records/import\"";
@@ -48,7 +48,7 @@ try {
 
 		 	if($resp == false) { // usually 429 => rate-limit CF
 		 		echo $raw . "\n";
-		 		sleep(5);
+		 		sleep(10);
 		 		continue;
 		 	}
 		 	break;
